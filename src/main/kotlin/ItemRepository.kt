@@ -9,7 +9,7 @@ class ItemRepository {
         }
     }
 
-    fun getById(id: Int): Pair<Int, String>? = transaction(readOnly = true) {
+    fun getById(id: Int): Pair<Int, String>? = transaction {
         MyTable.select { MyTable.id eq id }
             .singleOrNull()
             ?.let { row -> row[MyTable.id] to row[MyTable.name] }
